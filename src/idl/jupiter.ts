@@ -1209,7 +1209,28 @@ export type Jupiter = {
             name: "Obric";
             fields: [
               {
-                name: "x_to_y";
+                name: "xToY";
+                type: "bool";
+              }
+            ];
+          },
+          {
+            name: "FoxBuyFromEstimatedCost";
+          },
+          {
+            name: "FoxClaimPartial";
+            fields: [
+              {
+                name: "isY";
+                type: "bool";
+              }
+            ];
+          },
+          {
+            name: "SolFi";
+            fields: [
+              {
+                name: "isQuoteToBase";
                 type: "bool";
               }
             ];
@@ -2628,7 +2649,28 @@ export const IDL: Jupiter = {
             name: "Obric",
             fields: [
               {
-                name: "x_to_y",
+                name: "xToY",
+                type: "bool",
+              },
+            ],
+          },
+          {
+            name: "FoxBuyFromEstimatedCost",
+          },
+          {
+            name: "FoxClaimPartial",
+            fields: [
+              {
+                name: "isY",
+                type: "bool",
+              },
+            ],
+          },
+          {
+            name: "SolFi",
+            fields: [
+              {
+                name: "isQuoteToBase",
                 type: "bool",
               },
             ],
