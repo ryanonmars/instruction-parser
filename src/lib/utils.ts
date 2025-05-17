@@ -1,5 +1,5 @@
 import Decimal from "decimal.js";
-import got from "got";
+import ky from "ky";
 import { BN } from "@coral-xyz/anchor";
 import { TokenInfo } from "@solana/spl-token-registry";
 
@@ -20,7 +20,7 @@ export async function getPriceInUSDByMint(
       return new Decimal(price);
     }
 
-    let payload = (await got
+    let payload = (await ky
       .get(`https://price.jup.ag/v4/price?ids=${tokenMint}`)
       .json()) as any;
 
