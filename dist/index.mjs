@@ -1649,6 +1649,17 @@ var DecimalUtil = class {
     return new Decimal(input.toString()).div(new Decimal(10).pow(shift));
   }
 };
+function getTokenMap() {
+  return __async(this, null, function* () {
+    const response = yield ky.get("https://token.jup.ag/all").json();
+    const tokens = response;
+    const tokenMap = {};
+    for (const token of tokens) {
+      tokenMap[token.address] = token;
+    }
+    return tokenMap;
+  });
+}
 
 // src/lib/get-events.ts
 import { utils } from "@coral-xyz/anchor";
@@ -1949,7 +1960,10 @@ function extractMintDecimals(accountInfosMap, mint) {
   return;
 }
 export {
+  DecimalUtil,
   extract,
+  getPriceInUSDByMint,
+  getTokenMap,
   program
 };
 //# sourceMappingURL=index.mjs.map

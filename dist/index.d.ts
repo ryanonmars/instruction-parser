@@ -1,5 +1,7 @@
-import { Program } from '@coral-xyz/anchor';
+import { BN, Program } from '@coral-xyz/anchor';
 import { ParsedInstruction, PublicKey, Connection } from '@solana/web3.js';
+import Decimal from 'decimal.js';
+import { TokenInfo } from '@solana/spl-token-registry';
 
 type Jupiter = {
     version: "0.1.0";
@@ -1465,6 +1467,13 @@ interface TransactionWithMeta {
     };
 }
 
+declare function getPriceInUSDByMint(tokenMint: string): Promise<Decimal | undefined>;
+declare class DecimalUtil {
+    static fromBigInt(input: BigInt, shift?: number): Decimal;
+    static fromBN(input: BN, shift?: number): Decimal;
+}
+declare function getTokenMap(): Promise<Record<string, TokenInfo>>;
+
 declare const program: Program<Jupiter>;
 type SwapAttributes = {
     owner: string;
@@ -1502,4 +1511,4 @@ type SwapAttributes = {
 };
 declare function extract(signature: string, connection: Connection, tx: TransactionWithMeta, blockTime?: number): Promise<SwapAttributes | undefined>;
 
-export { SwapAttributes, TransactionWithMeta, extract, program };
+export { DecimalUtil, SwapAttributes, TransactionWithMeta, extract, getPriceInUSDByMint, getTokenMap, program };

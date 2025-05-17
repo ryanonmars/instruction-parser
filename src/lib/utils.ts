@@ -49,3 +49,15 @@ export class DecimalUtil {
     return new Decimal(input.toString()).div(new Decimal(10).pow(shift));
   }
 }
+
+// Fetch the Jupiter token list and return a token map (mint address -> token info)
+export async function getTokenMap(): Promise<Record<string, TokenInfo>> {
+  const response = await ky.get('https://token.jup.ag/all').json();
+  // The response is an array of token info objects
+  const tokens = response as TokenInfo[];
+  const tokenMap: Record<string, TokenInfo> = {};
+  for (const token of tokens) {
+    tokenMap[token.address] = token;
+  }
+  return tokenMap;
+}

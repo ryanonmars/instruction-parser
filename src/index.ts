@@ -317,3 +317,6 @@ function extractMintDecimals(accountInfosMap: AccountInfoMap, mint: PublicKey) {
 
   return;
 }
+
+export { DecimalUtil, getPriceInUSDByMint } from "./lib/utils";
+export { getTokenMap } from "./lib/utils";
